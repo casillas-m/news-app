@@ -7,8 +7,9 @@ const apiKey = process.env.API_KEY;
 class News {
   getAll(req, res) {
     let query = req.query.q || "bitcoin"
+    let source = req.query.source || ""
     console.log('Query params: ', query);
-    const url = `${apiUrl}everything?q=${query}&apiKey=${apiKey}`;
+    const url = `${apiUrl}everything?q=${query}${source!==""?`&sources=${source}`:""}&apiKey=${apiKey}`;
     axios.get(url).then(response => {
       res.send(response.data.articles);
     }).catch(e => {
