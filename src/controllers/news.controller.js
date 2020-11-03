@@ -18,6 +18,18 @@ class News {
     })
   }
 
+  getHeadlines(req, res) {//***** */
+    if(req.query.country)country = req.query.country;
+    else country = "mx"
+    const url = `${apiUrl}top-headlines?country=${country}&apiKey=${apiKey}`;
+    axios.get(url).then(response => {
+      res.send(response.data.articles);
+    }).catch(e => {
+      res.send('Oops! Failed!')
+      res.end();
+    })
+  }
+
   getById(req, res) {
     res.send('Traer la noticia ' + req.params.noticiaID);
   }
