@@ -21,4 +21,8 @@ router.post('/auth2', function(req, res) {
 });
 
 
+router.get('/headlines', newsController.getHeadlines);
+router.get('/domains', newsController.getSources);
+
+
 module.exports = router;
