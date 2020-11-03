@@ -18,12 +18,7 @@ class News {
   }
 
   getHeadlines(req, res) {//***** */
-    console.log('------------------------------------');
-    console.log(req.query);
-    console.log('------------------------------------');
-    let country;
-    if(req.query.country !== undefined)country = req.query.country;
-    else country = "mx"
+    let country = req.query.country || "mx"
     const url = `${apiUrl}top-headlines?country=${country}&apiKey=${apiKey}`;
     axios.get(url).then(response => {
       res.send(response.data.articles);
