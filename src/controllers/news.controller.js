@@ -6,6 +6,7 @@ const apiKey = process.env.API_KEY;
 
 class News {
   getAll(req, res) {
+    let query;
     if(req.query.q)query = req.query.q;
     else query = ""
     console.log('Query params: ', req.query.test);
@@ -19,7 +20,11 @@ class News {
   }
 
   getHeadlines(req, res) {//***** */
-    if(req.query.country)country = req.query.country;
+    console.log('------------------------------------');
+    console.log(req.query);
+    console.log('------------------------------------');
+    let country;
+    if(req.query.country !== undefined)country = req.query.country;
     else country = "mx"
     const url = `${apiUrl}top-headlines?country=${country}&apiKey=${apiKey}`;
     axios.get(url).then(response => {
