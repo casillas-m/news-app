@@ -30,6 +30,16 @@ class News {
     })
   }
 
+  getSources(req, res){
+    const url = `${apiUrl}sources?apiKey=${apiKey}`;
+    axios.get(url).then(response => {
+      res.send(response.data.articles);
+    }).catch(e => {
+      res.send('Oops! Failed!')
+      res.end();
+    })
+  }
+
   getById(req, res) {
     res.send('Traer la noticia ' + req.params.noticiaID);
   }
