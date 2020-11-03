@@ -36,7 +36,7 @@ class News {
   getSources(req, res){
     const url = `${apiUrl}sources?apiKey=${apiKey}`;
     axios.get(url).then(response => {
-      res.send(response.data.articles);
+      res.send(response.data.sources);
     }).catch(e => {
       res.send('Oops! Failed!')
       res.end();
