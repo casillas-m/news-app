@@ -6,11 +6,9 @@ const apiKey = process.env.API_KEY;
 
 class News {
   getAll(req, res) {
-    let query;
-    if(req.query.q)query = req.query.q;
-    else query = ""
-    console.log('Query params: ', req.query.test);
-    const url = `${apiUrl}everything?q=${query}&sortBy=publishedAt&apiKey=${apiKey}`;
+    let query = req.query.q || "bitcoin"
+    console.log('Query params: ', query);
+    const url = `${apiUrl}everything?q=${query}&apiKey=${apiKey}`;
     axios.get(url).then(response => {
       res.send(response.data.articles);
     }).catch(e => {
